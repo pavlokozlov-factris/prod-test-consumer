@@ -6,7 +6,7 @@ module.exports = (_, argv) => ({
     publicPath:
       argv.mode === "development"
         ? "http://localhost:8081/"
-        : "https://prod-test-consumer.vercel.app/",
+        : "https://prod-test-consumer-one.vercel.app/",
   },
 
   resolve: {
@@ -38,7 +38,7 @@ module.exports = (_, argv) => ({
       name: "consumer",
       filename: "remoteEntry.js",
       remotes: {
-        header: "header@https://prod-test-header.vercel.app/remoteEntry.js",
+        header: "header@https://prod-test-header-nu.vercel.app/remoteEntry.js",
       },
       exposes: {},
       shared: require("./package.json").dependencies,
