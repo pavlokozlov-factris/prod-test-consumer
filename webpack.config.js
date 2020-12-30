@@ -8,7 +8,7 @@ module.exports = (_, argv) => ({
     publicPath:
       argv.mode === "development"
         ? "http://localhost:8081/"
-        : "https://prod-test-consumer-one.vercel.app/",
+        : "https://prod-test-consumer.herokuapp.com/",
     filename: '[name].[chunkhash].js'
   },
 
