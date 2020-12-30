@@ -41,7 +41,9 @@ module.exports = (_, argv) => ({
       name: "consumer",
       filename: "remoteEntry.js",
       remotes: {
-        header: "header@https://prod-test-header.herokuapp.com/remoteEntry.js",
+        header: `header@${argv.mode === "development"
+        ? "http://localhost:8080"
+        : "https://prod-test-consumer.herokuapp.com"}/remoteEntry.js`,
       },
       exposes: {},
       shared: require("./package.json").dependencies,
@@ -54,6 +56,5 @@ module.exports = (_, argv) => ({
     splitChunks: {
       chunks: 'all',
     },
-    runtimeChunk: true,
   },
 });
