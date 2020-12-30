@@ -3,10 +3,12 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 module.exports = (_, argv) => ({
   output: {
+    path: path.resolve(__dirname, 'build'),
     publicPath:
       argv.mode === "development"
         ? "http://localhost:8081/"
         : "https://prod-test-consumer-one.vercel.app/",
+    filename: '[name].[chunkhash].js'
   },
 
   resolve: {
@@ -38,7 +40,7 @@ module.exports = (_, argv) => ({
       name: "consumer",
       filename: "remoteEntry.js",
       remotes: {
-        header: "header@https://prod-test-header-nu.vercel.app/remoteEntry.js",
+        header: "header@https://prod-test-header.herokuapp.com/remoteEntry.js",
       },
       exposes: {},
       shared: require("./package.json").dependencies,
@@ -47,4 +49,10 @@ module.exports = (_, argv) => ({
       template: "./src/index.html",
     }),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+    runtimeChunk: true,
+  },
 });
