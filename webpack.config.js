@@ -9,7 +9,7 @@ module.exports = (_, argv) => ({
       argv.mode === "development"
         ? "http://localhost:8081/"
         : "https://prod-test-consumer.herokuapp.com/",
-    // filename: '[name].[chunkhash].js'
+      filename: '[name].[chunkhash].js'
   },
 
   resolve: {
@@ -43,7 +43,7 @@ module.exports = (_, argv) => ({
       remotes: {
         header: `header@${argv.mode === "development"
         ? "http://localhost:8080"
-        : "https://prod-test-consumer.herokuapp.com"}/remoteEntry.js`,
+        : "https://prod-test-header.herokuapp.com"}/remoteEntry.js`,
       },
       exposes: {},
       shared: require("./package.json").dependencies,
@@ -52,9 +52,9 @@ module.exports = (_, argv) => ({
       template: "./src/index.html",
     }),
   ],
-  /* optimization: {
+  optimization: {
     splitChunks: {
       chunks: 'all',
     },
-  }, */
+  },
 });
